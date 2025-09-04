@@ -19,8 +19,6 @@ export type LeftColumnFormValues = {
 
 
 
-
-
 interface LeftColumnProps {
   form: UseFormReturn<LeftColumnFormValues>;
 }
@@ -47,12 +45,6 @@ const LeftColumn: React.FC<LeftColumnProps> = ({ form }) => {
       setIsAdding(false);
     }
   };
-
-  const toggleQueryActive = (index: number) => {
-    const updated = [...queries];
-    form.setValue("questions", updated);
-  };
-
   const deleteQuery = (index: number) => {
     const updated = [...queries];
     updated.splice(index, 1);

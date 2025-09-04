@@ -2,8 +2,6 @@
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { ColumnDef } from "@tanstack/react-table";
-import { Badge } from "@/components/ui/badge";
-import { CheckCircle, XCircle } from "lucide-react";
 import { dateFormat } from "@/lib/format";
 import { DataTableColumnHeader } from "@/components/ui/data-table/data-table-column-header";
 import CellAction from "./cell-action";
