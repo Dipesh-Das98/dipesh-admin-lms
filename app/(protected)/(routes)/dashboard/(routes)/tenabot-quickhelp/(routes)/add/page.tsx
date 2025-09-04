@@ -1,6 +1,6 @@
 import React from "react";
 import { ContentLayout } from "@/components/dashboard-panel/content-layout";
-import MainForm from "../components/add-health-course/mainform";
+import MainForm from "../components/add-helpTopics/mainform";
 
 const page = () => {
   return (
@@ -24,10 +24,10 @@ const page = () => {
           </div>
           <div>
             <h1 className="text-3xl font-bold text-foreground">
-              Add Family Health Content
+              Add Tenarbot Quick Help Questions
             </h1>
             <p className="text-muted-foreground mt-1">
-              Fill in the details below to create a new read along with content. Ensure
+              Fill in the details below to create a quick help for tenarbot. Ensure
               all required fields are completed.
             </p>
           </div>

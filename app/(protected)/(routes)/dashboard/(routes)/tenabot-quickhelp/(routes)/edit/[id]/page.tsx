@@ -1,10 +1,30 @@
 import React from "react";
+import { notFound } from "next/navigation";
 import { ContentLayout } from "@/components/dashboard-panel/content-layout";
-import MainForm from "../components/add-health-course/mainform";
+import MainForm from "../../components/add-helpTopics/mainform";
+import { getHelpTopic } from "@/actions/dashboard/help-topics/get-help-topic-by-id";
 
-const page = () => {
+interface EditHelpTopicPageProps {
+  params: Promise<{
+    id: string;
+  }>;
+}
+
+const EditHelpTopicPage = async ({ params }: EditHelpTopicPageProps) => {
+  const { id } = await params;
+
+  const result = await getHelpTopic(id);
+
+  console.log("Fetched Help Topic:", result);
+
+  if (!result.success || !result.data) {
+    notFound();
+  }
+
+  const initialValues = result.data;
+
   return (
-    <ContentLayout className="space-y-6">
+    <ContentLayout>
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-4">
           <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
@@ -24,18 +44,18 @@ const page = () => {
           </div>
           <div>
             <h1 className="text-3xl font-bold text-foreground">
-              Add Family Health Content
+              Edit Help Topic
             </h1>
             <p className="text-muted-foreground mt-1">
-              Fill in the details below to create a new read along with content. Ensure
-              all required fields are completed.
+              Update the Help Topic&apos;s information and settings
             </p>
           </div>
         </div>
       </div>
-      <MainForm mode="create" />
+
+      <MainForm mode="edit" initialValues={initialValues} />
     </ContentLayout>
   );
 };
 
-export default page;
+export default EditHelpTopicPage;

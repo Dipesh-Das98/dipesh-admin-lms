@@ -19,7 +19,8 @@ import {
   Paperclip,
   BookOpenCheck,
   HeartPlus,
-  ListVideo
+  ListVideo,
+  HandHelping
 } from "lucide-react";
 
 type Submenu = {
@@ -162,6 +163,22 @@ export function getMenuList(): Group[] {
             {
               href: "/dashboard/games",
               label: "Manage Games",
+            },
+          ],
+        },
+
+        {
+          href: "/dashboard/tenabot-quickhelp",
+          label: "Tenabot QuickHelp",
+          icon: HandHelping,
+          submenus: [
+            {
+              href: "/dashboard/tenabot-quickhelp/add",
+              label: "Add QuickHelp",
+            },
+            {
+              href: "/dashboard/tenabot-quickhelp",
+              label: "Manage QuickHelp",
             },
           ],
         },
