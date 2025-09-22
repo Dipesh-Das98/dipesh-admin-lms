@@ -239,7 +239,7 @@ export function ParentsDataTable<TData, TValue>({
           </div>
         )}
 
-        <Button onClick={handleOpenSheet}>create parent</Button>
+        <Button onClick={handleOpenSheet}>Create Parent</Button>
       </div>
 
       {/* Table */}

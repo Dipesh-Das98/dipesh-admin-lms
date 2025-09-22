@@ -26,6 +26,8 @@ const DataTableWrapper = () => {
     gcTime: 10 * 60 * 1000, // 10 minutes
   });
 
+  console.log({data});
+
   if (isLoading) {
     return <DataTableSkeleton columnCount={5} />;
   }

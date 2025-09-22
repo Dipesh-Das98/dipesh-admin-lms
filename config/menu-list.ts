@@ -20,7 +20,8 @@ import {
   BookOpenCheck,
   HeartPlus,
   ListVideo,
-  HandHelping
+  Calendar,
+  BookOpenText,
 } from "lucide-react";
 
 type Submenu = {
@@ -166,22 +167,6 @@ export function getMenuList(): Group[] {
             },
           ],
         },
-
-        {
-          href: "/dashboard/tenabot-quickhelp",
-          label: "Tenabot QuickHelp",
-          icon: HandHelping,
-          submenus: [
-            {
-              href: "/dashboard/tenabot-quickhelp/add",
-              label: "Add QuickHelp",
-            },
-            {
-              href: "/dashboard/tenabot-quickhelp",
-              label: "Manage QuickHelp",
-            },
-          ],
-        },
       ],
     },
     {
@@ -276,7 +261,42 @@ export function getMenuList(): Group[] {
               label: "Manage Content",
             },
           ],
-        }
+        },
+      ],
+    },
+    {
+      groupLabel: "Community Management",
+      menus: [
+        {
+          href: "/dashboard/community/dashboard",
+          label: "Dashboard",
+          icon: LayoutGrid,
+        },
+        {
+          href: "/dashboard/community/moderators",
+          label: "Moderators",
+          icon: Users,
+        },
+        {
+          href: "/dashboard/community/advertisement",
+          label: "Advertisements",
+          icon: Paperclip,
+        },
+        {
+          href: "/dashboard/community/post-category",
+          label: "Post Category",
+          icon: FolderTree,
+        },
+        {
+          href: "/dashboard/community/event",
+          label: "Events",
+          icon: Calendar,
+        },
+        {
+          href: "/dashboard/community/tip",
+          label: "Tips",
+          icon: BookOpenText,
+        },
       ],
     },
     {
@@ -305,7 +325,7 @@ export function getMenuList(): Group[] {
           href: "/dashboard/advertisements",
           label: "Advertisements",
           icon: Paperclip,
-        }
+        },
       ],
     },
 
