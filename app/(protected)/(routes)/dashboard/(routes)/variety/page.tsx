@@ -19,3 +19,5 @@ export default function VarietyPage() {
     </ContentLayout>
   );
 }
+
+// Variety done
