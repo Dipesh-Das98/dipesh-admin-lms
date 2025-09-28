@@ -78,7 +78,7 @@ const EditPopUpNotificationPage = async ({
               Edit Pop-up Notification
             </h1>
             <p className="text-muted-foreground mt-1">
-              Update the pop-up notification's content, image, and schedule
+              Update the pop-up notification content
             </p>
           </div>
         </div>
