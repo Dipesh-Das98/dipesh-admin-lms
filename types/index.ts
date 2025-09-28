@@ -17,4 +17,3 @@ export * from "./category.type";
 export * from "./admin.type";
 export * from "./subscription.type";
 export * from "./payments.type";
-export * from "./community-dashboard.type";

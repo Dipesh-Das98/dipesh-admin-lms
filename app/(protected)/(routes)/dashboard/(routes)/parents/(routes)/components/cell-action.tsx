@@ -1,7 +1,7 @@
 "use client";
 import { Parent } from "@/types";
 import { Button } from "@/components/ui/button";
-import { Copy, Edit2, MoreHorizontal, Plus, Trash2, Users } from "lucide-react";
+import { Copy, Edit2, MoreHorizontal, Plus, Trash2 } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,7 +14,6 @@ import { toast } from "sonner";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteParent } from "@/actions/dashboard/parent/delete-parent";
 import Link from "next/link";
-import { makeModerator, removeModerator } from "@/actions/dashboard/community/moderator";
 
 interface CellActionProps {
   parent: Parent;
@@ -46,38 +45,6 @@ const CellAction = ({ parent }: CellActionProps) => {
   const handleEditClick = () => {
     openSheet("parent-form", { mode: "edit", parent });
   };
-
-  const makeModeratorMutation = useMutation({
-    mutationFn: makeModerator,
-    onSuccess: (response) => {
-      if (response.success) {
-        toast.success("Moderator made successfully!");
-        queryClient.invalidateQueries({ queryKey: ["parents"] });
-      } else {
-        toast.error(response.message);
-      }
-    },
-    onError: (error) => {
-      console.error("Make moderator error:", error);
-      toast.error("Failed to make moderator. Please try again.");
-    },
-  });
-
-  const removeModeratorMutation = useMutation({
-    mutationFn: removeModerator,
-    onSuccess: (response) => {
-      if (response.success) {
-        toast.success("Moderator removed successfully!");
-        queryClient.invalidateQueries({ queryKey: ["parents"] });
-      } else {
-        toast.error(response.message);
-      }
-    },
-    onError: (error) => {
-      console.error("Remove moderator error:", error);
-      toast.error("Failed to remove moderator. Please try again.");
-    },
-  });
 
   const handleDeleteClick = () => {
     openModal("confirmation-model", {
@@ -131,22 +98,6 @@ const CellAction = ({ parent }: CellActionProps) => {
               Add Child
             </Link>
           </DropdownMenuItem>
-          {parent.role === 'PARENT' ? <DropdownMenuItem
-            onClick={() => {
-              makeModeratorMutation.mutate({ userId: parent.id });
-            }}
-          >
-            <Users className="mr-2 h-4 w-4" />
-            Make Moderator
-          </DropdownMenuItem>: <DropdownMenuItem
-            onClick={() => {
-              removeModeratorMutation.mutate(parent.id);
-            }}
-          >
-            <Users className="mr-2 h-4 w-4" />
-            Remove Moderator
-          </DropdownMenuItem>}
-          
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

@@ -20,8 +20,8 @@ import {
   BookOpenCheck,
   HeartPlus,
   ListVideo,
-  Calendar,
-  BookOpenText,
+  ClipboardCopy,
+  Airplay
 } from "lucide-react";
 
 type Submenu = {
@@ -261,41 +261,42 @@ export function getMenuList(): Group[] {
               label: "Manage Content",
             },
           ],
-        },
+        }
       ],
     },
     {
-      groupLabel: "Community Management",
+      groupLabel: "Notificaions",
+      roles: ["SUPER_ADMIN"],
       menus: [
         {
-          href: "/dashboard/community/dashboard",
-          label: "Dashboard",
-          icon: LayoutGrid,
+          href: "/dashboard/push-notification",
+          label: "Push Notifications",
+          icon: ClipboardCopy,
+          submenus: [
+            {
+              href: "/dashboard/push-notification/add",
+              label: "Add Push Notification",
+            },
+            {
+              href: "/dashboard/push-notification",
+              label: "Manage Push Notifications",
+            },
+          ],
         },
         {
-          href: "/dashboard/community/moderators",
-          label: "Moderators",
-          icon: Users,
-        },
-        {
-          href: "/dashboard/community/advertisement",
-          label: "Advertisements",
-          icon: Paperclip,
-        },
-        {
-          href: "/dashboard/community/post-category",
-          label: "Post Category",
-          icon: FolderTree,
-        },
-        {
-          href: "/dashboard/community/event",
-          label: "Events",
-          icon: Calendar,
-        },
-        {
-          href: "/dashboard/community/tip",
-          label: "Tips",
-          icon: BookOpenText,
+          href: "/dashboard/pop-up-notification",
+          label: "Pop-up Notifications",
+          icon: Airplay,
+          submenus: [
+            {
+              href: "/dashboard/pop-up-notification/add",
+              label: "Add Pop-up Notification",
+            },
+            {
+              href: "/dashboard/pop-up-notification",
+              label: "Manage Pop-ups",
+            },
+          ],
         },
       ],
     },
@@ -325,7 +326,7 @@ export function getMenuList(): Group[] {
           href: "/dashboard/advertisements",
           label: "Advertisements",
           icon: Paperclip,
-        },
+        }
       ],
     },
 

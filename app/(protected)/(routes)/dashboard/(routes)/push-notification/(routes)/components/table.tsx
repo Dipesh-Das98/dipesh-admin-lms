@@ -39,7 +39,6 @@ import {
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { useDebounce } from "use-debounce";
-import { useSheet } from "@/hooks/use-sheet";
 
 interface ServerPaginationMeta {
   total: number;
@@ -48,7 +47,7 @@ interface ServerPaginationMeta {
   hasNext: boolean;
 }
 
-interface ParentsDataTableProps<TData, TValue> {
+interface PushNotificationTableProp<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   meta: ServerPaginationMeta;
@@ -62,7 +61,7 @@ interface ParentsDataTableProps<TData, TValue> {
   pageSizeOptions?: number[];
 }
 
-export function ParentsDataTable<TData, TValue>({
+export function PushNotificationTable<TData, TValue>({
   columns,
   data,
   meta,
@@ -74,12 +73,10 @@ export function ParentsDataTable<TData, TValue>({
   currentSortOrder = "desc",
   alignment = "align-middle",
   pageSizeOptions = [10, 20, 30, 40, 50],
-}: ParentsDataTableProps<TData, TValue>) {
+}: PushNotificationTableProp<TData, TValue>) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { openSheet } = useSheet();
 
-  // Initialize sorting state from URL parameters
   const [sorting, setSorting] = React.useState<SortingState>(() => {
     if (currentSortBy) {
       return [{ id: currentSortBy, desc: currentSortOrder === "desc" }];
@@ -94,23 +91,11 @@ export function ParentsDataTable<TData, TValue>({
   const [searchValue, setSearchValue] = React.useState(currentSearch);
   const [debouncedSearch] = useDebounce(searchValue, 1000);
 
-  // Update sorting state when URL sorting parameters change
-  React.useEffect(() => {
-    if (currentSortBy) {
-      setSorting([{ id: currentSortBy, desc: currentSortOrder === "desc" }]);
-    } else {
-      setSorting([]);
-    }
-  }, [currentSortBy, currentSortOrder]);
-
-  // Update search value when currentSearch changes (from URL)
   React.useEffect(() => {
     setSearchValue(currentSearch);
   }, [currentSearch]);
 
-  // Update URL when search changes (but not on initial load)
   React.useEffect(() => {
-    // Only update URL if search actually changed from current URL search
     if (debouncedSearch !== currentSearch) {
       const params = new URLSearchParams(searchParams);
 
@@ -120,14 +105,11 @@ export function ParentsDataTable<TData, TValue>({
         params.delete("search");
       }
 
-      // Reset to page 1 when searching
       params.set("page", "1");
-
       router.push(`?${params.toString()}`);
     }
   }, [debouncedSearch, currentSearch, router, searchParams]);
 
-  // Handle sorting changes and update URL
   const handleSortingChange = React.useCallback(
     (updater: SortingState | ((old: SortingState) => SortingState)) => {
       const newSorting =
@@ -145,9 +127,7 @@ export function ParentsDataTable<TData, TValue>({
         params.delete("sortOrder");
       }
 
-      // Reset to page 1 when sorting changes
       params.set("page", "1");
-
       router.push(`?${params.toString()}`);
     },
     [sorting, searchParams, router]
@@ -185,45 +165,23 @@ export function ParentsDataTable<TData, TValue>({
   }) => {
     const params = new URLSearchParams(searchParams);
 
-    if (updates.page !== undefined) {
-      params.set("page", updates.page.toString());
-    }
-
+    if (updates.page !== undefined) params.set("page", updates.page.toString());
     if (updates.perPage !== undefined) {
       params.set("perPage", updates.perPage.toString());
-      // Reset to page 1 when changing page size
       params.set("page", "1");
     }
-
     if (updates.search !== undefined) {
       if (updates.search) {
         params.set("search", updates.search);
       } else {
         params.delete("search");
       }
-      // Reset to page 1 when searching
       params.set("page", "1");
     }
 
     router.push(`?${params.toString()}`);
   };
 
-  const handlePageChange = (page: number) => {
-    if (page >= 1 && page <= totalPages) {
-      updateURL({ page });
-    }
-  };
-
-  const handlePageSizeChange = (newPageSize: string) => {
-    const pageSize = Number(newPageSize);
-    updateURL({ perPage: pageSize });
-  };
-
-  const handleOpenSheet = () => {
-    openSheet("parent-form", {
-      mode: "create",
-    });
-  };
   return (
     <div>
       <div className="flex gap-4 items-center justify-between py-4">
@@ -238,11 +196,8 @@ export function ParentsDataTable<TData, TValue>({
             />
           </div>
         )}
-
-        <Button onClick={handleOpenSheet}>create parent</Button>
       </div>
 
-      {/* Table */}
       <div className="rounded-md border border-dashed">
         <Table>
           <TableHeader>
@@ -250,8 +205,8 @@ export function ParentsDataTable<TData, TValue>({
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <TableHead
-                    className="font-bold p-4 text-center"
                     key={header.id}
+                    className="font-bold p-4 text-center"
                   >
                     {header.isPlaceholder
                       ? null
@@ -264,9 +219,8 @@ export function ParentsDataTable<TData, TValue>({
               </TableRow>
             ))}
           </TableHeader>
-
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
@@ -296,7 +250,6 @@ export function ParentsDataTable<TData, TValue>({
         </Table>
       </div>
 
-      {/* Pagination */}
       <div className="flex w-full flex-col-reverse items-center justify-between gap-4 overflow-auto p-1 sm:flex-row sm:gap-8 mt-4">
         <div className="flex-1 whitespace-nowrap text-sm text-muted-foreground">
           Showing {data.length} of {meta.total} results
@@ -309,15 +262,17 @@ export function ParentsDataTable<TData, TValue>({
             </p>
             <Select
               value={`${currentPerPage}`}
-              onValueChange={handlePageSizeChange}
+              onValueChange={(value) =>
+                updateURL({ perPage: Number(value) })
+              }
             >
               <SelectTrigger className="h-8 w-[4.5rem]">
                 <SelectValue placeholder={currentPerPage} />
               </SelectTrigger>
               <SelectContent side="top">
-                {pageSizeOptions.map((pageSize) => (
-                  <SelectItem key={pageSize} value={`${pageSize}`}>
-                    {pageSize}
+                {pageSizeOptions.map((size) => (
+                  <SelectItem key={size} value={`${size}`}>
+                    {size}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -330,46 +285,39 @@ export function ParentsDataTable<TData, TValue>({
 
           <div className="flex items-center space-x-2">
             <Button
-              aria-label="Go to first page"
               variant="outline"
               className="hidden size-8 p-0 lg:flex"
-              onClick={() => handlePageChange(1)}
+              onClick={() => updateURL({ page: 1 })}
               disabled={currentPage === 1}
             >
-              <ChevronsLeft className="size-4" aria-hidden="true" />
+              <ChevronsLeft className="size-4" />
             </Button>
-
             <Button
-              aria-label="Go to previous page"
               variant="outline"
               size="icon"
               className="size-8"
-              onClick={() => handlePageChange(currentPage - 1)}
+              onClick={() => updateURL({ page: currentPage - 1 })}
               disabled={currentPage === 1}
             >
-              <ChevronLeft className="size-4" aria-hidden="true" />
+              <ChevronLeft className="size-4" />
             </Button>
-
             <Button
-              aria-label="Go to next page"
               variant="outline"
               size="icon"
               className="size-8"
-              onClick={() => handlePageChange(currentPage + 1)}
+              onClick={() => updateURL({ page: currentPage + 1 })}
               disabled={!meta.hasNext}
             >
-              <ChevronRight className="size-4" aria-hidden="true" />
+              <ChevronRight className="size-4" />
             </Button>
-
             <Button
-              aria-label="Go to last page"
               variant="outline"
               size="icon"
               className="hidden size-8 lg:flex"
-              onClick={() => handlePageChange(totalPages)}
+              onClick={() => updateURL({ page: totalPages })}
               disabled={currentPage === totalPages}
             >
-              <ChevronsRight className="size-4" aria-hidden="true" />
+              <ChevronsRight className="size-4" />
             </Button>
           </div>
         </div>

@@ -1,20 +1,20 @@
 "use client";
 
 import { ContentLayout } from "@/components/dashboard-panel/content-layout";
-import VarietyDataTableWrapper from "./(routes)/components/dataTableVariety";
+import PopNotificationTable from "./(routes)/components/dataTable";
 
 export default function VarietyPage() {
   return (
     <ContentLayout className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold">Variety Content</h1>
+        <h1 className="text-3xl font-bold">Push Notification</h1>
         <p className="text-muted-foreground">
-          Manage variety content
+          Manage push notification
         </p>
       </div>
       <div className="mt-6">
 
-        <VarietyDataTableWrapper />
+        <PopNotificationTable />
       </div>
     </ContentLayout>
   );

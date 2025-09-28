@@ -50,4 +50,5 @@ export enum Features {
   READ_ALONG_SLIDES = 'read-along-slides',
   VARIETY = 'variety',
   FAMILY_HEALTH = 'family-health',
+  POPUP_NOTIFICATION = 'POPUP_NOTIFICATION',
 }
