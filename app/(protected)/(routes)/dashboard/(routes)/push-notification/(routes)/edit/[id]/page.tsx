@@ -7,15 +7,15 @@ import { PushNotificationTemplate } from "@/types/push-notification.type";
 import { getPushNotificationTemplate } from "@/actions/dashboard/push-notification/get-push-notification-by-id";
 
 interface EditPushNotificationPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 const EditPushNotificationPage = async ({ 
   params,
 }: EditPushNotificationPageProps) => {
-  const { id } = params;
+  const { id } = await params;
 
   // Type assertion for better data handling
   const result: { success: boolean; data?: PushNotificationTemplate } = 
