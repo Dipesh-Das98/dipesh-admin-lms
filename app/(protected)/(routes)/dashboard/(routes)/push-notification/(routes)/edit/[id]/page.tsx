@@ -56,7 +56,7 @@ const EditPushNotificationPage = async ({
             </h1>
             {/* 5. Updated Description */}
             <p className="text-muted-foreground mt-1">
-              Update the push notification content
+              Update push notification content
             </p>
           </div>
         </div>
