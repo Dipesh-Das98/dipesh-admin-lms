@@ -15,15 +15,15 @@ interface GetPopupNotificationResponse {
 }
 
 interface EditPopUpNotificationPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 const EditPopUpNotificationPage = async ({ 
   params,
 }: EditPopUpNotificationPageProps) => {
-  const { id } = params;
+  const { id } = await params;
 
   // 3. Fetch the pop-up notification data
   // NOTE: Type casting is necessary if the return type of your action isn't strictly defined
@@ -78,7 +78,7 @@ const EditPopUpNotificationPage = async ({
               Edit Pop-up Notification
             </h1>
             <p className="text-muted-foreground mt-1">
-              Update the pop-up notification's content, image, and schedule
+              Update the pop-up notification content
             </p>
           </div>
         </div>

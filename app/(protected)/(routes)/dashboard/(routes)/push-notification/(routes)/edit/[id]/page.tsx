@@ -7,15 +7,15 @@ import { PushNotificationTemplate } from "@/types/push-notification.type";
 import { getPushNotificationTemplate } from "@/actions/dashboard/push-notification/get-push-notification-by-id";
 
 interface EditPushNotificationPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 const EditPushNotificationPage = async ({ 
   params,
 }: EditPushNotificationPageProps) => {
-  const { id } = params;
+  const { id } = await params;
 
   // Type assertion for better data handling
   const result: { success: boolean; data?: PushNotificationTemplate } = 
@@ -56,7 +56,7 @@ const EditPushNotificationPage = async ({
             </h1>
             {/* 5. Updated Description */}
             <p className="text-muted-foreground mt-1">
-              Update the notification's title, message, and schedule
+              Update push notification content
             </p>
           </div>
         </div>

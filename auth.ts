@@ -32,7 +32,8 @@ export const {
     },
 
     async jwt({ token, user }) {
-      if (!token.sub) return token;
+
+      if(!token.sub) return token;
 
       if (user) {
         // User is available during sign-in
