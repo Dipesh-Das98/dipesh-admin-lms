@@ -265,6 +265,7 @@ export function getMenuList(): Group[] {
       ],
     },
     {
+      // sourabh added community
       groupLabel: "Community Management",
       menus: [
         {
