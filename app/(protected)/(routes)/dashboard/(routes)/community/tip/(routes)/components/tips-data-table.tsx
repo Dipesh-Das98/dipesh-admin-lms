@@ -39,7 +39,6 @@ import {
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { useDebounce } from "use-debounce";
-import { useSheet } from "@/hooks/use-sheet";
 
 interface ServerPaginationMeta {
   total: number;
@@ -48,7 +47,7 @@ interface ServerPaginationMeta {
   hasNext: boolean;
 }
 
-interface ParentsDataTableProps<TData, TValue> {
+interface TipsDataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   meta: ServerPaginationMeta;
@@ -62,7 +61,7 @@ interface ParentsDataTableProps<TData, TValue> {
   pageSizeOptions?: number[];
 }
 
-export function ParentsDataTable<TData, TValue>({
+export function TipsDataTable<TData, TValue>({
   columns,
   data,
   meta,
@@ -74,10 +73,9 @@ export function ParentsDataTable<TData, TValue>({
   currentSortOrder = "desc",
   alignment = "align-middle",
   pageSizeOptions = [10, 20, 30, 40, 50],
-}: ParentsDataTableProps<TData, TValue>) {
+}: TipsDataTableProps<TData, TValue>) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { openSheet } = useSheet();
 
   // Initialize sorting state from URL parameters
   const [sorting, setSorting] = React.useState<SortingState>(() => {
@@ -219,11 +217,6 @@ export function ParentsDataTable<TData, TValue>({
     updateURL({ perPage: pageSize });
   };
 
-  const handleOpenSheet = () => {
-    openSheet("parent-form", {
-      mode: "create",
-    });
-  };
   return (
     <div>
       <div className="flex gap-4 items-center justify-between py-4">
@@ -238,8 +231,6 @@ export function ParentsDataTable<TData, TValue>({
             />
           </div>
         )}
-
-        <Button onClick={handleOpenSheet}>Create Parent</Button>
       </div>
 
       {/* Table */}
