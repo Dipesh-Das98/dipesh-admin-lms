@@ -2,24 +2,20 @@
 
 import { ContentLayout } from "@/components/dashboard-panel/content-layout";
 import { TipForm } from "../../(routes)/components/tip-form";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { getTipById } from "@/actions/dashboard/community/tip";
 import { DataTableSkeleton } from "@/components/ui/data-table/data-table-skleton";
 
-interface EditTipPageProps {
-  params: {
-    id: string;
-  };
-}
-
-export default function EditTipPage({ params }: EditTipPageProps) {
+export default function EditTipPage() {
   const router = useRouter();
-  const { id } = params;
+  const params = useParams();
+  const id = params.id as string;
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["tip", id],
-    queryFn: () => getTipById(id),
+    queryFn: () => getTipById(id!),
+    enabled: !!id,
     staleTime: 5 * 60 * 1000,
   });
 
