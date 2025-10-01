@@ -1,19 +1,6 @@
 import { create } from "zustand";
 import { Parent, Game, Course, Category, Admin, Payment } from "@/types";
-import { Advertisement } from "@/actions/dashboard/community/advertisement";
-import { PostCategory } from "@/actions/dashboard/community/post-category";
-import { Event } from "@/actions/dashboard/community/event";
-export type SheetType =
-  | "admin-form"
-  | "game-form"
-  | "course-form"
-  | "category-form"
-  | "parent-form"
-  | "payment-form"
-  | "read-along-form"
-  | "advertisement-form"
-  | "post-category-form"
-  | "event-form";
+export type SheetType = "admin-form" | "game-form" | "course-form" | "category-form" | "parent-form" | "payment-form" | "read-along-form";
 
 interface SheetData {
   mode?: "create" | "edit";
@@ -22,10 +9,7 @@ interface SheetData {
   course?: Course | null;
   admin?: Admin | null;
   category?: Category | null;
-  payment?: Payment | null;
-  advertisement?: Advertisement | null;
-  postCategory?: PostCategory | null;
-  event?: Event | null;
+  payment?:Payment | null;
 }
 
 interface SheetStore {
