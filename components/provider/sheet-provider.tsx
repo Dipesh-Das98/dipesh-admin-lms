@@ -8,6 +8,9 @@ import { CreateCourseSheet } from "@/app/(protected)/(routes)/dashboard/(routes)
 import { CreateCategorySheet } from "@/app/(protected)/(routes)/dashboard/(routes)/categories/components/create-category-sheet";
 import { AdminFormContent } from "@/app/(protected)/(routes)/dashboard/(routes)/admin/(routes)/components/admin-form";
 import EditPaymentStatus from "@/app/(protected)/(routes)/dashboard/(routes)/payments/(root)/components/components/edit-payment-sidebar";
+import { AdvertisementFormContent } from "@/app/(protected)/(routes)/dashboard/(routes)/community/advertisement/(routes)/components/advertisement-sheet-form";
+import { PostCategoryFormContent } from "@/app/(protected)/(routes)/dashboard/(routes)/community/post-category/(routes)/components/post-category-sheet-form";
+import { EventFormContent } from "@/app/(protected)/(routes)/dashboard/(routes)/community/event/(routes)/components/event-sheet-form";
 
 export const SheetProvider = () => {
   // Hydration Fix
@@ -26,6 +29,9 @@ export const SheetProvider = () => {
       <CreateCategorySheet />
       <AdminFormContent />
       <EditPaymentStatus />
+      <AdvertisementFormContent />
+      <PostCategoryFormContent />
+      <EventFormContent />
     </>
   );
 };
