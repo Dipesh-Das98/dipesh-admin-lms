@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { TrendingUp, TrendingDown, Heart, MessageCircle, Bot, Zap } from "lucide-react";
+import { TrendingUp, TrendingDown, MessageCircle, Bot, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ParentCategories } from "@/types/analytics.type";
 
@@ -57,8 +57,8 @@ export const ParentFeaturesOverview: React.FC<ParentFeaturesOverviewProps> = ({ 
         const isPositive = trend >= 0;
         const absTrend = Math.abs(trend);
         
-        let trendColor = isPositive ? "text-green-600" : "text-red-600";
-        let Icon = isPositive ? TrendingUp : TrendingDown;
+        const trendColor = isPositive ? "text-green-600" : "text-red-600";
+        const Icon = isPositive ? TrendingUp : TrendingDown;
 
         return { Icon, trendColor, trendText: `${absTrend.toFixed(1)}%` };
     };

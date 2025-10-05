@@ -5,7 +5,6 @@ import React from "react";
 import { AdvertisementSummary } from "@/types/analytics.type";
 import { Card, CardContent } from "@/components/ui/card";
 import { Megaphone, XCircle, CheckCircle } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 // FIX: Define the Advertisement interface locally to ensure the file is runnable
 // This should ideally be moved to @/types/dashboard.types.ts
@@ -28,9 +27,9 @@ const AdvertisementItem: React.FC<{ ad: Advertisement }> = ({ ad }) => {
     
     // Using mock data attributes as the API response provided empty array for details
     const isRunning = Math.random() > 0.3; // Placeholder for status logic
-    const StatusIcon = isRunning ? CheckCircle : XCircle;
-    const statusColor = isRunning ? "text-green-500" : "text-red-500";
-    const statusText = isRunning ? "Running" : "Paused";
+    // const StatusIcon = isRunning ? CheckCircle : XCircle;
+    //const statusColor = isRunning ? "text-green-500" : "text-red-500";
+    // const statusText = isRunning ? "Running" : "Paused";
 
     // Since the actual Advertisement type is unknown from the response, 
     // we use placeholders based on common ad properties.
