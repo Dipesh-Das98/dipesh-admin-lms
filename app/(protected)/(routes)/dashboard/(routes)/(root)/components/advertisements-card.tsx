@@ -4,7 +4,7 @@ import React from "react";
 // Import AdvertisementsSummary only, as Advertisement will be defined locally below
 import { AdvertisementSummary } from "@/types/analytics.type";
 import { Card, CardContent } from "@/components/ui/card";
-import { Megaphone, XCircle, CheckCircle } from "lucide-react";
+import { Megaphone, XCircle } from "lucide-react";
 
 // FIX: Define the Advertisement interface locally to ensure the file is runnable
 // This should ideally be moved to @/types/dashboard.types.ts
