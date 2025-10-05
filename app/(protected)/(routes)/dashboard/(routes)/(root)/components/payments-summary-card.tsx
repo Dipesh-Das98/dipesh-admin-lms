@@ -35,8 +35,8 @@ export const PaymentsSummaryCard: React.FC<PaymentsSummaryCardProps> = ({ paymen
     const isPositive = t >= 0;
     const absTrend = Math.abs(t);
     
-    let trendColor = isPositive ? PAID_COLOR : UNPAID_COLOR;
-    let Icon = isPositive ? TrendingUp : TrendingDown;
+    const trendColor = isPositive ? PAID_COLOR : UNPAID_COLOR;
+    const Icon = isPositive ? TrendingUp : TrendingDown;
 
     // Use toFixed(1) for consistent decimal display
     return { Icon, trendColor, trendText: `${absTrend.toFixed(1)}%` };
