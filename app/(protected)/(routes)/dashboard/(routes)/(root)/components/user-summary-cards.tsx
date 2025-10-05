@@ -42,7 +42,7 @@ export const UserSummaryCards: React.FC<UserSummaryCardsProps> = ({ userSummary 
 
   // 2. Determine icon, color, and label based on trend value
   const getTrendProps = (trend: number) => {
-    const isPositive = trend >= 0;
+    // const isPositive = trend >= 0;
     const absTrend = Math.abs(trend);
 
     let trendColor = "text-gray-500";

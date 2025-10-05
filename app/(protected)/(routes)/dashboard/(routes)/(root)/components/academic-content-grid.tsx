@@ -2,8 +2,7 @@
 
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge"; 
-import { BookOpen, BarChart3, FlaskConical, Heart, BookOpenCheck, User, Users, Smile } from "lucide-react"; 
+import { BookOpen, BarChart3, FlaskConical, Heart, BookOpenCheck } from "lucide-react"; 
 import { cn } from "@/lib/utils";
 import { AcademicGradeContent } from "@/types/analytics.type";
 
