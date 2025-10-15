@@ -11,13 +11,13 @@ import { PregnancyWeekContent } from "@/types/pregnancy.type";
 import { getPregnancyWeekContentById } from "@/actions/dashboard/pregnancy/get-pregnancy-by-id";
 
 interface EditPregnancyWeekContentPageProps { // FIX 3: Rename interface
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 const EditPregnancyWeekContentPage = async ({ params }: EditPregnancyWeekContentPageProps) => { // FIX 4: Rename component
-  const { id } = params;
+  const { id } = await params;
 
   // 5. Fetch the Pregnancy Week Content data
   const result = await getPregnancyWeekContentById(id);
