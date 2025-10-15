@@ -11,13 +11,13 @@ import { getPregnancyNutritionTipById } from "@/actions/dashboard/pregnancy-nutr
 // NOTE: We rely on the internal Next.js PageProps type structure for async components, 
 // so we define the type directly in the function signature.
 interface EditSymptomTipPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 const EditSymptomReliefTipPage = async ({ params }: EditSymptomTipPageProps) => {
-  const { id } = params;
+  const { id } = await params;
 
   // 3. Fetch the Symptom Relief Tip data
   // We use the action created earlier which returns the structured response.
