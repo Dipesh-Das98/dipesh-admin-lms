@@ -24,7 +24,7 @@ const page = () => {
           </div>
           <div>
             <h1 className="text-3xl font-bold text-foreground">
-              Add Read Along With Content
+              Add Family Health Content
             </h1>
             <p className="text-muted-foreground mt-1">
               Fill in the details below to create a new read along with content. Ensure

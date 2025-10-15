@@ -50,5 +50,8 @@ export enum Features {
   READ_ALONG_SLIDES = 'read-along-slides',
   VARIETY = 'variety',
   FAMILY_HEALTH = 'family-health',
+  PREGNANCY_NUTRITION = 'pregnancy-nutrition',
+  PREGNANCY_WEEK_CONTENT = 'pregnancy-week-content',
+  HELP_TOPICS = 'help-topics',
   POPUP_NOTIFICATION = 'POPUP_NOTIFICATION',
 }

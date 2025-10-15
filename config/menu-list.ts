@@ -20,6 +20,12 @@ import {
   BookOpenCheck,
   HeartPlus,
   ListVideo,
+  HandHelping,
+  ClipboardCopy,
+  Airplay,
+  BriefcaseMedical,
+  HeartPulse,
+  Apple,
   Calendar,
   BookOpenText,
 } from "lucide-react";
@@ -167,6 +173,22 @@ export function getMenuList(): Group[] {
             },
           ],
         },
+
+        {
+          href: "/dashboard/tenabot-quickhelp",
+          label: "Tenabot QuickHelp",
+          icon: HandHelping,
+          submenus: [
+            {
+              href: "/dashboard/tenabot-quickhelp/add",
+              label: "Add QuickHelp",
+            },
+            {
+              href: "/dashboard/tenabot-quickhelp",
+              label: "Manage QuickHelp",
+            },
+          ],
+        },
       ],
     },
     {
@@ -262,7 +284,109 @@ export function getMenuList(): Group[] {
             },
           ],
         },
+        {
+          href: "/dashboard/vaccination",
+          label: "Vaccination",
+          icon: BriefcaseMedical,
+          submenus: [
+            {
+              href: "/dashboard/vaccination/add",
+              label: "Add Content",
+            },
+            {
+              href: "/dashboard/vaccination",
+              label: "Manage Content",
+            },
+          ],
+        },
       ],
+    },
+    {
+      groupLabel: "Pregnancy Tracker",
+      roles: ["SUPER_ADMIN"],
+      menus: [
+        {
+          href: "/dashboard/symptom-tips",
+          label: "Symptom Tips",
+          icon: HeartPulse,
+          submenus: [
+            {
+              href: "/dashboard/symptom-tips/add",
+              label: "Add Symptomn Tips",
+            },
+            {
+              href: "/dashboard/symptom-tips",
+              label: "Manage Symptomn Tips",
+            },
+          ],
+        },
+        {
+          href: "/dashboard/pregnancy-nutrition",
+          label: "Pregnancy Nutrition Tips",
+          icon: Apple,
+          submenus: [
+            {
+              href: "/dashboard/pregnancy-nutrition/add",
+              label: "Add Pregnancy Nutrition",
+            },
+            {
+              href: "/dashboard/pregnancy-nutrition",
+              label: "Manage Pregnancy Nutrition",
+            },
+          ],
+        },
+        {
+          href: "/dashboard/pregnancyWeekContent",
+          label: "Pregnancy Week Content",
+          icon: HeartPlus,
+          submenus: [
+            {
+              href: "/dashboard/pregnancyWeekContent/add",
+              label: "Add Pregnancy Week Content",
+            },
+            {
+              href: "/dashboard/pregnancyWeekContent",
+              label: "Manage Pregnancy Week Content",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      groupLabel: "Notifications",
+      roles: ["SUPER_ADMIN"],
+      menus: [
+        {
+          href: "/dashboard/push-notification",
+          label: "Push Notifications",
+          icon: ClipboardCopy,
+          submenus: [
+            {
+              href: "/dashboard/push-notification/add",
+              label: "Add Push Notification",
+            },
+            {
+              href: "/dashboard/push-notification",
+              label: "Manage Push Notifications",
+            },
+          ],
+        },
+        {
+          href: "/dashboard/pop-up-notification",
+          label: "Pop-up Notifications",
+          icon: Airplay,
+          submenus: [
+            {
+              href: "/dashboard/pop-up-notification/add",
+              label: "Add Pop-up Notification",
+            },
+            {
+              href: "/dashboard/pop-up-notification",
+              label: "Manage Pop-ups",
+            },
+          ],
+      },
+    ],
     },
     {
       groupLabel: "Community Management",
