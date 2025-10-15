@@ -58,12 +58,8 @@ interface MainFormProps {
 const PregnancyWeekContentForm: React.FC<MainFormProps> = ({ mode, initialValues }) => {
   const router = useRouter();
   const queryClient = useQueryClient(); 
-
-  const form = useForm<
-    PregnancyWeekContentFormValues,
-    any, // TContext (often the cause of the error)
-    PregnancyWeekContentFormValues // TTransformedValues
-  >({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const form = useForm<PregnancyWeekContentFormValues, any, PregnancyWeekContentFormValues >({
     resolver: zodResolver(pregnancyWeekContentSchema),
     defaultValues: {
       // FIX: Update default values to match the new schema

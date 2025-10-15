@@ -2,7 +2,7 @@
 "use client";
 
 import React from "react";
-import { Control, FieldValues, UseFormReturn, useFieldArray } from "react-hook-form";
+import { Control, UseFormReturn, useFieldArray } from "react-hook-form";
 import { Trash2, Plus } from "lucide-react";
 import {
   FormControl,
@@ -14,7 +14,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
 
 // FIX: Update the imported type name
@@ -27,6 +26,7 @@ interface LeftColumnProps {
 }
 
 // Generic type definition to handle the form control array casting
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type GenericFormArray = Record<string, any[]>;
 
 const LeftColumn: React.FC<LeftColumnProps> = ({ form }) => {

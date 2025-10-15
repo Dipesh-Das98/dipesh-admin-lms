@@ -19,17 +19,18 @@ type FormValues = PregnancyWeekContentFormValues;
 
 interface RightColumnProps {
   // FIX: Update the UseFormReturn type
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   form: UseFormReturn<FormValues, any, FormValues>;
   mode: "create" | "edit";
   // FIX: Rename prop to reflect content ID
   contentId?: string; 
 }
 
-const RightColumn: React.FC<RightColumnProps> = ({ form, mode, contentId }) => {
+const RightColumn: React.FC<RightColumnProps> = ({ form, contentId }) => {
   // FIX: Watch the new fields
   const title = form.watch("sizeComparison"); 
   const comparisonImageUrl = form.watch("comparisonImage"); 
-  const heartbeatAudioUrl = form.watch("heartbeatAudio");
+  // const heartbeatAudioUrl = form.watch("heartbeatAudio");
   
   // FIX: Use the new ID prop
   const id = contentId || form.watch("id"); 

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Control, FieldValues, UseFormReturn, useFieldArray } from "react-hook-form";
+import { Control, UseFormReturn, useFieldArray } from "react-hook-form";
 import { Trash2, Plus } from "lucide-react";
 import {
   FormControl,
@@ -22,7 +22,8 @@ interface LeftColumnProps {
   form: UseFormReturn<PregnancyNutritionFormValues>;
   mode: "create" | "edit";
 }
-type NutritionFactItem = PregnancyNutritionFormValues['nutritionFacts'][number];
+// type NutritionFactItem = PregnancyNutritionFormValues['nutritionFacts'][number];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type GenericFormArray = Record<string, any[]>;
 
 const LeftColumn: React.FC<LeftColumnProps> = ({ form }) => {
@@ -45,7 +46,7 @@ const LeftColumn: React.FC<LeftColumnProps> = ({ form }) => {
     append: appendFact, 
     remove: removeFact 
   } = useFieldArray<
-    GenericFormArray, // <-- Trick the path checker
+    GenericFormArray,
     "nutritionFacts"
   >({
     // CRITICAL: Two-step cast

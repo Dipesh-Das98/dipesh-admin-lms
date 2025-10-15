@@ -56,12 +56,8 @@ interface MainFormProps {
 const MainForm: React.FC<MainFormProps> = ({ mode, initialValues }) => {
   const router = useRouter();
   const queryClient = useQueryClient(); 
-
-  const form = useForm<
-    PregnancyNutritionFormValues,
-    any, // TContext (often the cause of the error)
-    PregnancyNutritionFormValues // TTransformedValues
-  >({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const form = useForm< PregnancyNutritionFormValues, any, PregnancyNutritionFormValues >({
     resolver: zodResolver(pregnancyNutritionSchema),
     defaultValues: {
       id: mode === "edit" ? initialValues?.id ?? "" : undefined,
@@ -95,6 +91,7 @@ const MainForm: React.FC<MainFormProps> = ({ mode, initialValues }) => {
       let submittedId = cleanValues.id;
 
       if (mode === "create") {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const response = await createPregnancyNutritionTip(cleanValues as any);
         if (!response?.success || !response.data?.data) {
           toast.error(response?.message || "Failed to create tip.");
@@ -105,10 +102,8 @@ const MainForm: React.FC<MainFormProps> = ({ mode, initialValues }) => {
         form.reset();
         router.push(`/dashboard/pregnancy-tips/edit/${submittedId}`);
       } else if (mode === "edit" && cleanValues.id) {
-        const response = await updatePregnancyNutritionTip(
-          cleanValues.id,
-          cleanValues as any
-        );
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const response = await updatePregnancyNutritionTip(cleanValues.id, cleanValues as any);
         if (!response?.success) {
           toast.error(response.message || "Update failed.");
           return;

@@ -10,12 +10,13 @@ import { Features } from "@/types";
 type FormValues = PregnancyNutritionFormValues;
 
 interface RightColumnProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   form: UseFormReturn<FormValues, any, FormValues>;
   mode: "create" | "edit";
   tipId?: string; 
 }
 
-const RightColumn: React.FC<RightColumnProps> = ({ form, mode, tipId }) => {
+const RightColumn: React.FC<RightColumnProps> = ({ form, tipId }) => {
   const title = form.watch("foodName"); 
   const imageUrl = form.watch("foodImage"); 
   const id = tipId || form.watch("id"); 
