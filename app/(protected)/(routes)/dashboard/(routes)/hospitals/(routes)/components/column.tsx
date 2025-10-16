@@ -6,9 +6,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { dateFormat } from "@/lib/format";
 import { DataTableColumnHeader } from "@/components/ui/data-table/data-table-column-header";
 import CellAction from "./cell-action"; // CellAction component is assumed to be in the same directory
-// FIX 1: Import the correct type for Hospital
 import { HospitalRecord } from "@/types/hospital.type"; 
-// FIX 2: Import the Badge component for better visualization (assuming it exists)
 import { Badge } from "@/components/ui/badge"; 
 
 
