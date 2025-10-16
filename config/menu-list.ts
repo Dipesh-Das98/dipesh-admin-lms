@@ -28,6 +28,7 @@ import {
   Apple,
   Calendar,
   BookOpenText,
+  Hospital,
 } from "lucide-react";
 
 type Submenu = {
@@ -295,6 +296,21 @@ export function getMenuList(): Group[] {
             },
             {
               href: "/dashboard/vaccination",
+              label: "Manage Content",
+            },
+          ],
+        },
+        {
+          href: "/dashboard/hospitals",
+          label: "Hospitals",
+          icon: Hospital,
+          submenus: [
+            {
+              href: "/dashboard/hospitals/add",
+              label: "Add Content",
+            },
+            {
+              href: "/dashboard/hospitals",
               label: "Manage Content",
             },
           ],
