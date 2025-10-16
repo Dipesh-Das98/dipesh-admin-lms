@@ -52,7 +52,7 @@ const EditHospitalPage = async ({ params }: EditHospitalPageProps) => {
               Edit Hospital: {initialValues.name}
             </h1>
             <p className="text-muted-foreground mt-1">
-              Update the hospital's information, vaccination details, and settings
+              Update the hospital information, vaccination details, and settings
             </p>
           </div>
         </div>
