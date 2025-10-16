@@ -15,7 +15,6 @@ import {
 import { useModal } from "@/hooks/use-modal";
 // FIX 1: Import the correct type for Hospital
 import { HospitalRecord } from "@/types/hospital.type"; 
-import { de } from "date-fns/locale";
 import { deleteHospital } from "@/actions/dashboard/hospital/deleteHospital";
 // FIX 2: Import the correct delete action for Hospitals
 

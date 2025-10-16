@@ -366,7 +366,7 @@ const LeftColumn: React.FC<LeftColumnProps> = ({ form }) => {
 
             {fields.length === 0 && (
                 <p className="text-sm text-center text-muted-foreground mt-4 p-4 border rounded-lg bg-background/50">
-                    No vaccinations added yet. Click "Add New Vaccination" to start.
+                    No vaccinations added yet. Click Add New Vaccination to start.
                 </p>
             )}
           </div>
